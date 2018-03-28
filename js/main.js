@@ -25,6 +25,94 @@ $(document).ready(function() {
       });
     });  
     
+    //gitHub signin
+    $(document).on('click',"#gitHub",function(){
+       var provider = new firebase.auth.GithubAuthProvider();
+       firebase.auth().signInWithPopup(provider).then(function(result) {
+       // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+       var token = result.credential.accessToken;
+       var user = result.user;
+       // ...
+    }).catch(function(error) {
+       // Handle Errors here.
+       var errorCode = error.code;
+       var errorMessage = error.message;
+       // The email of the user's account used.
+       var email = error.email;
+       // The firebase.auth.AuthCredential type that was used.
+       var credential = error.credential;
+       // ...
+       });
+    });
+    
+    
+    //google signin
+    $(document).on('click',"#google",function(){
+       var provider = new firebase.auth.GoogleAuthProvider();
+       firebase.auth().signInWithPopup(provider).then(function(result) {
+       // This gives you a Google Access Token. You can use it to access the Google API.
+       var token = result.credential.accessToken;
+       // The signed-in user info.
+       var user = result.user;
+       // ...
+    }).catch(function(error) {
+       // Handle Errors here.
+       var errorCode = error.code;
+       var errorMessage = error.message;
+       // The email of the user's account used.
+       var email = error.email;
+       // The firebase.auth.AuthCredential type that was used.
+       var credential = error.credential;
+       // ...
+       });
+    });  
+
+
+    //facebook signin
+    $(document).on('click',"#facebook",function(){
+       var provider = new firebase.auth.FacebookAuthProvider();
+       firebase.auth().signInWithPopup(provider).then(function(result) {
+      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+      var token = result.credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+      // ...
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+      });
+    });      
+    
+    //twitter signin
+    $(document).on('click',"#twitter",function(){
+       var provider = new firebase.auth.TwitterAuthProvider();
+       firebase.auth().signInWithPopup(provider).then(function(result) {
+         // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
+         // You can use these server side with your app's credentials to access the Twitter API.
+         var token = result.credential.accessToken;
+         var secret = result.credential.secret;
+         // The signed-in user info.
+         var user = result.user;
+         // ...
+         
+       }).catch(function(error) {
+         // Handle Errors here.
+         var errorCode = error.code;
+         var errorMessage = error.message;
+         // The email of the user's account used.
+         var email = error.email;
+         // The firebase.auth.AuthCredential type that was used.
+         var credential = error.credential;
+         // ...
+       });
+    });  
+    
     //create user account
     $(document).on('click',"#signup",function(){
       var email= this.form.usr.value;
@@ -263,7 +351,7 @@ $(document).ready(function() {
 
 
     }else{
-      var formHtml='<div class="imgcontainer"><img src="image/forumlogo.png" alt="Avatar" class="avatar"></div> Email: <input type="text"   id ="usr"><br> password: <input type="password"   id = "pwd"><br> <input type="button" value="Sign Up" id="signup"><input type="button" value="Sign In" id="signin">';
+      var formHtml='<div class="imgcontainer"><img src="image/forumlogo.png" alt="Avatar" class="avatar"></div> Email: <input type="text"   id ="usr"><br> password: <input type="password"   id = "pwd"><br> <input type="button" value="Sign Up" id="signup"><input type="button" value="Sign In" id="signin"><div style="text-align: center;"><i id="gitHub" class="fa fa-github fa-4x fa-inverse"></i><i id="facebook" class="fa fa-facebook-official fa-4x fa-inverse"></i><i id="google" class="fa fa-google-plus-official fa-4x fa-inverse"></i><i id="twitter" class="fa fa-twitter fa-4x fa-inverse"></i></div>';
       $('#loginForm').html(formHtml);
       console.log("not logged in");
       $("#usr").show();
